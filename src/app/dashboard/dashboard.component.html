@@ -1,0 +1,12 @@
+<h1>Shift List</h1>
+<div class="grid grid-pad">
+  <a *ngFor="let shift of shifts" class="col-1-4">
+    <div>
+      <h2>Shift</h2>
+      <h4>Crew member assigned: {{shift.crewMember.name}}</h4>
+      <h4>Starts at {{shift.weekDay.name}}</h4>
+      <h4>Duration {{shift.duration}} days</h4>
+
+    </div>
+  </a>
+</div>
