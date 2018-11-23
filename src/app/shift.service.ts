@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Shift } from './app.shift';
+import { Shift, CrewMember } from './app.shift';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -20,6 +20,7 @@ export class ShiftService {
 
   private shiftsUrl = 'http://localhost:8080/shifts'; 
   private shiftUrl = 'http://localhost:8080/shift'; 
+  private crewMemberShiftUrl = 'http://localhost:8080/crewMemberShifts'; 
 
   
   getShifts(): Observable<Shift[]> {
@@ -52,13 +53,33 @@ export class ShiftService {
     const url = `${this.shiftUrl}/${id}`;
 
     return this.http.delete<Shift>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
+      tap(_ => this.log(`deleted shift id=${id}`)),
       catchError(this.handleError<Shift>('deleteShift')),
       
     );
   }
 
+  getShiftsFromMember(crewMemberId:number):Observable<Shift[]>{
+
+    const url = `${this.crewMemberShiftUrl}/${crewMemberId}`;
+
+    return this.http.get<Shift[]>(url).pipe(
+      tap(_ => this.log(`fetched shift of crewMember id=${crewMemberId}`)),
+      catchError(this.handleError<Shift[]>(`getShiftsFromMember id=${crewMemberId}`))
+    );
+  }
  
+  deleteAllShiftOfMember(crewMemberId:number):Observable<Shift>{
+
+    const url = `${this.crewMemberShiftUrl}/${crewMemberId}`;
+
+    return this.http.delete<Shift>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted shift id=${crewMemberId}`)),
+      catchError(this.handleError<Shift>('deleteShift')),
+      
+    );
+  }
+
 
 
 

@@ -12,6 +12,7 @@ import { ReactiveFormsModule }          from '@angular/forms';
 import { AddShiftComponent } from './add-shift/add-shift.component';
 import { ShiftDetailsComponent } from './shift-details/shift-details.component';
 import { MembersComponent } from './members/members.component';
+import { MemberShiftsComponent } from './member-shifts/member-shifts.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MembersComponent } from './members/members.component';
     DynamicShiftFormPropertyComponent,
     AddShiftComponent,
     ShiftDetailsComponent,
-    MembersComponent
+    MembersComponent,
+    MemberShiftsComponent
   ],
   imports: [
     BrowserModule,

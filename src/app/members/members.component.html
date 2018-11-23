@@ -2,7 +2,7 @@
 
 <ul class="member">
   <li *ngFor="let member of members" class="col-1-4">
-    <a >
+    <a routerLink='/member-shifts/{{member.id}}'>
       <span class="badge">{{member.id}}</span>
       <span>{{member.name}}</span>
     </a>
