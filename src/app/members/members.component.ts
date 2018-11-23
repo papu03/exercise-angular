@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CrewMember } from '../app.shift';
+import { CrewMemberService } from '../crew-member.service';
 
 @Component({
   selector: 'app-members',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersComponent implements OnInit {
 
-  constructor() { }
+  members: CrewMember[]=[]
+
+  constructor(private crewMemberService:CrewMemberService) { }
 
   ngOnInit() {
+    this.getMembers()
+  }
+
+  getMembers(): void {
+    this.crewMemberService.getMembers().subscribe(members => this.members=members);
+
   }
 
 }
