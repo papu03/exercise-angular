@@ -30,6 +30,14 @@ export class ShiftService {
     );
   }
 
+  getShift(id: number): Observable<Shift> {
+    const url = `${this.shiftsUrl}/${id}`;
+    return this.http.get<Shift>(url).pipe(
+      tap(_ => this.log(`fetched shift id=${id}`)),
+      catchError(this.handleError<Shift>(`getShift id=${id}`))
+    );
+  }
+
   addShift(shift:Shift):Observable<Shift>{
     
     return this.http.post<Shift>(this.shiftUrl, shift, httpOptions).pipe(
@@ -38,6 +46,21 @@ export class ShiftService {
       
     );
   }
+
+  deleteShift(shift:Shift):Observable<Shift>{
+    const id = typeof shift === 'number' ? shift : shift.shiftId;
+    const url = `${this.shiftUrl}/${id}`;
+
+    return this.http.delete<Shift>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Shift>('deleteShift')),
+      
+    );
+  }
+
+ 
+
+
 
     /**
    * Handle Http operation that failed.

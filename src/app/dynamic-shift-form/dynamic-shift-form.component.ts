@@ -52,10 +52,16 @@ export class DynamicShiftFormComponent implements OnInit {
 
 
     this.form = this.spcs.toFormGroup(this.properties)
-    // this.getMembers();
+    
+    this.logNameChange();
   }
  
-
+  logNameChange() {
+    const nameControl = this.form.get('duration');
+    nameControl.valueChanges.forEach(
+      (value: string) => console.log(value)
+    );
+  }
 
   
   onSubmit() {

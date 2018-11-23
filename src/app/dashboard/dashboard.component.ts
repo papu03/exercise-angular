@@ -31,7 +31,11 @@ export class DashboardComponent implements OnInit {
     this.location.back();
   }
 
-  printShits(): void{
-    console.log(this.shifts)
+  deleteShift(shift:Shift): void{
+
+    this.shifts = this.shifts.filter(s => s!=shift)
+    this.shiftService.deleteShift(shift).subscribe()
   }
+
+
 }

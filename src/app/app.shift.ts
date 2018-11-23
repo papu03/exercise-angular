@@ -1,4 +1,5 @@
 export class Shift{
+    shiftId:number
     weekDay:string
     duration:number
     crewMemberId:number

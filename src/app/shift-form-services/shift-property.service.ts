@@ -34,7 +34,7 @@ export class ShiftPropertyService {
           new TextboxShift({
             key: 'duration',
             label: 'Duration',
-            value: '0',
+            value: '1',
             required: true,
             order: 3
           }),

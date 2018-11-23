@@ -10,6 +10,8 @@ import { DynamicShiftFormComponent } from './dynamic-shift-form/dynamic-shift-fo
 import { DynamicShiftFormPropertyComponent } from './dynamic-shift-form-property/dynamic-shift-form-property.component';
 import { ReactiveFormsModule }          from '@angular/forms';
 import { AddShiftComponent } from './add-shift/add-shift.component';
+import { ShiftDetailsComponent } from './shift-details/shift-details.component';
+import { MembersComponent } from './members/members.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AddShiftComponent } from './add-shift/add-shift.component';
     DashboardComponent,
     DynamicShiftFormComponent,
     DynamicShiftFormPropertyComponent,
-    AddShiftComponent
+    AddShiftComponent,
+    ShiftDetailsComponent,
+    MembersComponent
   ],
   imports: [
     BrowserModule,
