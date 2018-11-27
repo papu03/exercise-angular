@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ShiftPropertyService} from '../shift-form-services/shift-property.service';
+import { ShiftPropertyBase } from '../shift-property-base';
 
 @Component({
   selector: 'add-shift',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddShiftComponent implements OnInit {
 
-  constructor() { }
+  properties: ShiftPropertyBase<any>[] = [];
+
+  constructor(private shiftPropertyService: ShiftPropertyService) { }
 
   ngOnInit() {
+    this.properties=this.shiftPropertyService.getProperty()
+
   }
 
 }

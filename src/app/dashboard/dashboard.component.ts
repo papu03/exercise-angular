@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShiftService } from '../shift.service';
-import { Shift } from '../app.shift';
+import { Shift, ShiftDTO } from '../app.shift';
 import { Location } from '@angular/common';
 
 @Component({
@@ -13,7 +13,6 @@ export class DashboardComponent implements OnInit {
   shifts: Shift[]=[]
 
   constructor(private shiftService: ShiftService,private location: Location) {
-    console.log("DashboardComponent constructor")
 
    }
 
@@ -31,9 +30,9 @@ export class DashboardComponent implements OnInit {
     this.location.back();
   }
 
-  deleteShift(shift:Shift): void{
+  deleteShift(shift:ShiftDTO): void{
 
-    this.shifts = this.shifts.filter(s => s!=shift)
+    this.shifts = this.shifts.filter(s => s.shiftId!=shift.shiftId)
     this.shiftService.deleteShift(shift).subscribe()
   }
 

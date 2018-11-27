@@ -61,4 +61,6 @@ export class ShiftPropertyService {
     return this.properties;
   
   }
+
+
 }

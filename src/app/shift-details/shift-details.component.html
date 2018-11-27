@@ -1,6 +1,10 @@
+<h2>Details Page</h2>
+
 <div *ngIf="shift">
-    <h2>Shift {{shift.shiftId}}</h2>
-    <h4>Crew member assigned: {{shift.crewMember.name}}</h4>
-    <h4>Starts at {{shift.weekDay.name}}</h4>
-    <h4>Duration {{shift.duration}} days</h4> 
+
+    <app-dynamic-shift-form [properties]="properties" 
+        [update]="true" 
+        [shift]="shift">
+    </app-dynamic-shift-form>
+    
 </div>

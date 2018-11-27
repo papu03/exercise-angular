@@ -3,16 +3,16 @@
   <label class="errorMessage" *ngIf="!isValid">*</label>
 
   <div [ngSwitch]="property.controlType">
- 
-    <input *ngSwitchCase="'textbox'" [formControlName]="property.key"
-            [id]="property.key" [type]="property.type">
- 
-    <select [id]="property.key" *ngSwitchCase="'dropdown'" [formControlName]="property.key">
-      <option *ngFor="let opt of property.options" [value]="opt.key">{{opt.value}}</option>
-      
 
-    </select>
-  </div> 
+      <input *ngSwitchCase="'textbox'" [formControlName]="property.key"
+              [id]="property.key" [type]="property.type">
+  
+      <select [id]="property.key" *ngSwitchCase="'dropdown'" [formControlName]="property.key">
+        <option *ngFor="let opt of property.options" [value]="opt.key" >{{opt.value}}</option>
+      </select>
+      
+  </div>
+
   
 
 </div>

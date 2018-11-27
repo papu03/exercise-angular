@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Shift, CrewMember } from './app.shift';
+import { Shift, CrewMember, ShiftDTO } from './app.shift';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -14,7 +14,6 @@ const httpOptions = {
 export class ShiftService {
 
   constructor(private http: HttpClient) {
-    console.log("ShiftService constructor")
 
    }
 
@@ -39,22 +38,34 @@ export class ShiftService {
     );
   }
 
-  addShift(shift:Shift):Observable<Shift>{
+  addShift(shift:ShiftDTO):Observable<ShiftDTO>{
     
-    return this.http.post<Shift>(this.shiftUrl, shift, httpOptions).pipe(
-      tap((shift: Shift) => this.log(`added shift`)),
-      catchError(this.handleError<Shift>('addShift')),
+    return this.http.post<ShiftDTO>(this.shiftUrl, shift, httpOptions).pipe(
+      tap((shift: ShiftDTO) => this.log(`added shift`)),
+      catchError(this.handleError<ShiftDTO>('addShift')),
       
     );
   }
 
-  deleteShift(shift:Shift):Observable<Shift>{
+  updateShift(shiftToUpdateId:number,newShift:ShiftDTO):Observable<ShiftDTO>{
+
+    
+    const url = `${this.shiftUrl}/${shiftToUpdateId}`;
+    return this.http.put<ShiftDTO>(url, newShift, httpOptions).pipe(
+      tap(_  => this.log(`updated shift id=${shiftToUpdateId}`)),
+      catchError(this.handleError<ShiftDTO>('updateShift')),
+      
+    );
+  }
+
+
+  deleteShift(shift:ShiftDTO):Observable<ShiftDTO>{
     const id = typeof shift === 'number' ? shift : shift.shiftId;
     const url = `${this.shiftUrl}/${id}`;
 
-    return this.http.delete<Shift>(url, httpOptions).pipe(
+    return this.http.delete<ShiftDTO>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted shift id=${id}`)),
-      catchError(this.handleError<Shift>('deleteShift')),
+      catchError(this.handleError<ShiftDTO>('deleteShift')),
       
     );
   }
@@ -67,6 +78,7 @@ export class ShiftService {
       tap(_ => this.log(`fetched shift of crewMember id=${crewMemberId}`)),
       catchError(this.handleError<Shift[]>(`getShiftsFromMember id=${crewMemberId}`))
     );
+
   }
  
   deleteAllShiftOfMember(crewMemberId:number):Observable<Shift>{

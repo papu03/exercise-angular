@@ -1,12 +1,19 @@
-export class Shift{
+export class ShiftDTO{
     shiftId:number
     weekDay:string
     duration:number
     crewMemberId:number
 }
 
+export class Shift{
+    shiftId:number
+    weekDay:WeekDay
+    duration:number
+    crewMember:CrewMember
+}
+
 export class WeekDay{
-    id:string
+    daysToNextWeek:number
     name:string
 }
 

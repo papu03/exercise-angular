@@ -1,7 +1,6 @@
 import { Component, OnInit,Input} from '@angular/core';
 import { ShiftPropertyBase } from '../shift-property-base'
 import { FormGroup }        from '@angular/forms';
-import {CrewMemberService} from '../shift-form-services/crew-member.service'
 
 @Component({
   selector: 'app-shift-property',
@@ -14,14 +13,15 @@ export class DynamicShiftFormPropertyComponent implements OnInit {
   @Input() form: FormGroup;
 
     
-  constructor(private crewMemberService:CrewMemberService) { }
+  constructor() { 
+
+  }
 
   ngOnInit() {
-    console.log("DynamicShiftFormPropertyComponent ngOnInit")
+    
   }
 
   ngOnDestroy(){
-    console.log("DynamicShiftFormPropertyComponent ngOnDestroy")
   }
   
 

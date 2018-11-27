@@ -20,6 +20,7 @@ export class ShiftPropertyControlService {
       group[property.key] = property.required ? new FormControl(property.value || '', Validators.required)
                                               : new FormControl(property.value || '');
     });
+    
     return new FormGroup(group);
   }
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {ShiftService} from '../shift.service';
 import {Shift} from '../app.shift';
-import { Observable, of } from 'rxjs';
+import {ShiftPropertyService} from '../shift-form-services/shift-property.service';
+import { ShiftPropertyBase } from '../shift-property-base';
 
 @Component({
   selector: 'app-shift-details',
@@ -11,18 +12,22 @@ import { Observable, of } from 'rxjs';
 })
 export class ShiftDetailsComponent implements OnInit {
 
-  // shift:Observable<Shift>;
   shift:Shift;
+  properties: ShiftPropertyBase<any>[] = [];
 
-  constructor(private route: ActivatedRoute, private shiftService:ShiftService) { 
+  constructor(private route: ActivatedRoute, 
+              private shiftService:ShiftService,
+              private shiftPropertyService: ShiftPropertyService) { 
     console.log("ShiftDetailsComponent constructor")
 
   }
 
   ngOnInit() {
     console.log("ShiftDetailsComponent ngOnInit")
-
     this.getShift()
+    this.properties=this.shiftPropertyService.getProperty()
+
+    
   }
 
   getShift(): void {
