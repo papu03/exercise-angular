@@ -6,24 +6,26 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule }   from '@angular/forms';
-import { DynamicShiftFormComponent } from './dynamic-shift-form/dynamic-shift-form.component';
+import { AddShiftFormComponent } from './add-shift-form/add-shift-form.component';
 import { DynamicShiftFormPropertyComponent } from './dynamic-shift-form-property/dynamic-shift-form-property.component';
 import { ReactiveFormsModule }          from '@angular/forms';
 import { AddShiftComponent } from './add-shift/add-shift.component';
 import { ShiftDetailsComponent } from './shift-details/shift-details.component';
 import { MembersComponent } from './members/members.component';
 import { MemberShiftsComponent } from './member-shifts/member-shifts.component';
+import { UpdateShiftFormComponent } from './update-shift-form/update-shift-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    DynamicShiftFormComponent,
+    AddShiftFormComponent,
     DynamicShiftFormPropertyComponent,
     AddShiftComponent,
     ShiftDetailsComponent,
     MembersComponent,
-    MemberShiftsComponent
+    MemberShiftsComponent,
+    UpdateShiftFormComponent
   ],
   imports: [
     BrowserModule,

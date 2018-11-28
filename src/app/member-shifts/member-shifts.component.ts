@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {ShiftService} from '../shift.service';
-import { Shift } from '../app.shift';
+import {ShiftService} from '../shift-form-services/shift.service';
+import { Shift, ShiftDTO } from '../app.shift';
 import { Location } from '@angular/common';
 
 @Component({
@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class MemberShiftsComponent implements OnInit {
 
-  memberShifts: Shift[]=[]
+  memberShifts: ShiftDTO[]=[]
 
   constructor(private route: ActivatedRoute, 
               private shiftService:ShiftService,

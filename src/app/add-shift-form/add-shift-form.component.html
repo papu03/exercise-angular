@@ -1,0 +1,21 @@
+<div>
+  <div *ngIf="members">
+
+    
+      <form [formGroup]="form" (ngSubmit)="addShift()">
+    
+        <div *ngFor="let property of properties" class="form-row">
+          <app-shift-property  [property]="property" [form]="form"></app-shift-property>
+        </div>
+        
+        <div class="form-row">
+          <button type="submit" [disabled]="!form.valid">Save</button>
+        </div>
+
+      </form>
+      
+  </div>
+</div>
+
+
+

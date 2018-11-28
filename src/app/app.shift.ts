@@ -3,6 +3,7 @@ export class ShiftDTO{
     weekDay:string
     duration:number
     crewMemberId:number
+    
 }
 
 export class Shift{

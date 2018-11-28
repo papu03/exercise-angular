@@ -1,25 +1,24 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { FormGroup }                 from '@angular/forms';
-import { ShiftPropertyBase } from '../shift-property-base';
+import { ShiftPropertyBase } from '../shift-form/shift-property-base';
 import {ShiftPropertyControlService} from '../shift-form-services/shift-property-control.service';
 import {CrewMemberService} from '../shift-form-services/crew-member.service'
-import { DropdownShift } from '../shift-dropdown'
-import {ShiftService} from '../shift.service'
+import { DropdownShift } from '../shift-form/shift-dropdown'
+import {ShiftService} from '../shift-form-services/shift.service'
 import { Shift, CrewMember, WeekDay,ShiftDTO} from '../app.shift';
 import { Location } from '@angular/common';
 import { DOCUMENT } from '@angular/common'; 
 
 @Component({
-  selector: 'app-dynamic-shift-form',
-  templateUrl: './dynamic-shift-form.component.html',
-  styleUrls: ['./dynamic-shift-form.component.css'],
+  selector: 'app-update-shift-form',
+  templateUrl: './update-shift-form.component.html',
+  styleUrls: ['./update-shift-form.component.css'],
   providers: [ ShiftPropertyControlService ]
 })
-export class DynamicShiftFormComponent implements OnInit {
+export class UpdateShiftFormComponent implements OnInit {
 
   @Input() properties: ShiftPropertyBase<any>[] = [];
-  @Input() update:boolean
-  @Input() shift:Shift
+  @Input() shift:ShiftDTO
 
   members:CrewMember[]
   form: FormGroup;
@@ -49,14 +48,12 @@ export class DynamicShiftFormComponent implements OnInit {
             this.JSONMembers=this.properties.filter(idx=>idx.key=="crewMember")[0] as DropdownShift
             this.JSONMembers.options.push({key:member.id,value:member.name})
         }
+
+        this.form.get('duration').setValue(this.shift.duration)
+        this.form.get('crewMember').setValue(this.shift.crewMemberId)
+        this.form.get('weekday').setValue(this.shift.weekDay)
+        this.form.disable()
         
-        if(this.update==true){
-          
-          this.form.get('duration').setValue(this.shift.duration)
-          this.form.get('crewMember').setValue(this.shift.crewMember.id)
-          this.form.get('weekday').setValue(this.shift.weekDay.name)
-          this.form.disable()
-        }
         
       })
 
@@ -70,14 +67,6 @@ export class DynamicShiftFormComponent implements OnInit {
     );
   }
 
-  
-  addShift() {
-
-    this.shiftService.addShift( {weekDay:this.form.value.weekday as string,
-                                duration:this.form.value.duration as number,
-                                crewMemberId:this.form.value.crewMember as number} as ShiftDTO).subscribe(() => this.goBack());
-  
-  }
 
   goBack(): void {
     this.location.back();
@@ -118,3 +107,4 @@ export class DynamicShiftFormComponent implements OnInit {
 
 
 }
+

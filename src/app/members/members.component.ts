@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrewMember } from '../app.shift';
-import { CrewMemberService } from '../crew-member.service';
+import { CrewMemberService } from '../shift-form-services/crew-member.service';
 
 @Component({
   selector: 'app-members',
@@ -18,7 +18,10 @@ export class MembersComponent implements OnInit {
   }
 
   getMembers(): void {
-    this.crewMemberService.getMembers().subscribe(members => this.members=members);
+    this.crewMemberService.getMembers().subscribe(members => {
+      this.members=members
+      this.members.sort((a, b) => a.id - b.id)
+    });
 
   }
 

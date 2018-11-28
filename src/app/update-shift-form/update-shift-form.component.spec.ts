@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DynamicShiftFormComponent } from './dynamic-shift-form.component';
+import { UpdateShiftFormComponent } from './update-shift-form.component';
 
-describe('DynamicShiftFormComponent', () => {
-  let component: DynamicShiftFormComponent;
-  let fixture: ComponentFixture<DynamicShiftFormComponent>;
+describe('UpdateShiftFormComponent', () => {
+  let component: UpdateShiftFormComponent;
+  let fixture: ComponentFixture<UpdateShiftFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DynamicShiftFormComponent ]
+      declarations: [ UpdateShiftFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DynamicShiftFormComponent);
+    fixture = TestBed.createComponent(UpdateShiftFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

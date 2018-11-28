@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ShiftPropertyService} from '../shift-form-services/shift-property.service';
-import { ShiftPropertyBase } from '../shift-property-base';
+import { ShiftPropertyBase } from '../shift-form/shift-property-base';
 
 @Component({
   selector: 'add-shift',

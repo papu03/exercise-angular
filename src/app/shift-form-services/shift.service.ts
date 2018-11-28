@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Shift, CrewMember, ShiftDTO } from './app.shift';
+import { ShiftDTO, Shift } from '../app.shift';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,11 +17,21 @@ export class ShiftService {
 
    }
 
-  private shiftsUrl = 'http://localhost:8080/shifts'; 
+  private shiftsDTOUrl = 'http://localhost:8080/shiftsDTO'; 
   private shiftUrl = 'http://localhost:8080/shift'; 
+  private shiftsUrl = 'http://localhost:8080/shifts'; 
+
   private crewMemberShiftUrl = 'http://localhost:8080/crewMemberShifts'; 
 
   
+  getShiftsDTO(): Observable<ShiftDTO[]> {
+    return this.http.get<ShiftDTO[]>(this.shiftsDTOUrl)
+    .pipe(
+      tap(_ => this.log('fetched shifts')),
+      catchError(this.handleError('getShifts', []))
+    );
+  }
+
   getShifts(): Observable<Shift[]> {
     return this.http.get<Shift[]>(this.shiftsUrl)
     .pipe(
@@ -30,11 +40,11 @@ export class ShiftService {
     );
   }
 
-  getShift(id: number): Observable<Shift> {
-    const url = `${this.shiftsUrl}/${id}`;
-    return this.http.get<Shift>(url).pipe(
+  getShiftDTO(id: number): Observable<ShiftDTO> {
+    const url = `${this.shiftsDTOUrl}/${id}`;
+    return this.http.get<ShiftDTO>(url).pipe(
       tap(_ => this.log(`fetched shift id=${id}`)),
-      catchError(this.handleError<Shift>(`getShift id=${id}`))
+      catchError(this.handleError<ShiftDTO>(`getShift id=${id}`))
     );
   }
 
@@ -70,24 +80,24 @@ export class ShiftService {
     );
   }
 
-  getShiftsFromMember(crewMemberId:number):Observable<Shift[]>{
+  getShiftsFromMember(crewMemberId:number):Observable<ShiftDTO[]>{
 
     const url = `${this.crewMemberShiftUrl}/${crewMemberId}`;
 
-    return this.http.get<Shift[]>(url).pipe(
+    return this.http.get<ShiftDTO[]>(url).pipe(
       tap(_ => this.log(`fetched shift of crewMember id=${crewMemberId}`)),
-      catchError(this.handleError<Shift[]>(`getShiftsFromMember id=${crewMemberId}`))
+      catchError(this.handleError<ShiftDTO[]>(`getShiftsFromMember id=${crewMemberId}`))
     );
 
   }
  
-  deleteAllShiftOfMember(crewMemberId:number):Observable<Shift>{
+  deleteAllShiftOfMember(crewMemberId:number):Observable<ShiftDTO>{
 
     const url = `${this.crewMemberShiftUrl}/${crewMemberId}`;
 
-    return this.http.delete<Shift>(url, httpOptions).pipe(
+    return this.http.delete<ShiftDTO>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted shift id=${crewMemberId}`)),
-      catchError(this.handleError<Shift>('deleteShift')),
+      catchError(this.handleError<ShiftDTO>('deleteShift')),
       
     );
   }
