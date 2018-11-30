@@ -15,8 +15,7 @@ export class DashboardComponent implements OnInit {
   shifts: Shift[]=[]
 
   constructor(private shiftService: ShiftService,
-              private location: Location,
-              private crewMemberService:CrewMemberService) {}
+              private location: Location) {}
 
   ngOnInit() {
     this.getShifts();

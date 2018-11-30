@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DropdownShift } from '../shift-form/shift-dropdown'
-import { TextboxShift } from '../shift-form/shift-textbox'
-import { ShiftPropertyBase } from '../shift-form/shift-property-base'
+import { DropdownShift } from '../shift-form-property/shift-dropdown'
+import { TextboxShift } from '../shift-form-property/shift-textbox'
+import { ShiftPropertyBase } from '../shift-form-property/shift-property-base';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {CrewMember} from '../app.shift';
 import { Observable, of } from 'rxjs';

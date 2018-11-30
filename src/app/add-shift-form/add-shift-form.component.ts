@@ -1,9 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { FormGroup }                 from '@angular/forms';
-import { ShiftPropertyBase } from '../shift-form/shift-property-base';
+import { ShiftPropertyBase } from '../shift-form-property/shift-property-base';
 import {ShiftPropertyControlService} from '../shift-form-services/shift-property-control.service';
 import {CrewMemberService} from '../shift-form-services/crew-member.service'
-import { DropdownShift } from '../shift-form/shift-dropdown'
+import { DropdownShift } from '../shift-form-property/shift-dropdown'
 import {ShiftService} from '../shift-form-services/shift.service'
 import { Shift, CrewMember, WeekDay,ShiftDTO} from '../app.shift';
 import { Location } from '@angular/common';

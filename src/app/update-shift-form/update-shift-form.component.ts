@@ -1,13 +1,13 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { FormGroup }                 from '@angular/forms';
-import { ShiftPropertyBase } from '../shift-form/shift-property-base';
+import { ShiftPropertyBase } from '../shift-form-property/shift-property-base';
 import {ShiftPropertyControlService} from '../shift-form-services/shift-property-control.service';
 import {CrewMemberService} from '../shift-form-services/crew-member.service'
-import { DropdownShift } from '../shift-form/shift-dropdown'
+import { DropdownShift } from '../shift-form-property/shift-dropdown'
 import {ShiftService} from '../shift-form-services/shift.service'
 import { Shift, CrewMember, WeekDay,ShiftDTO} from '../app.shift';
 import { Location } from '@angular/common';
-import { DOCUMENT } from '@angular/common'; 
+import { ShiftPropertyService } from '../shift-form-services/shift-property.service';
 
 @Component({
   selector: 'app-update-shift-form',
@@ -17,10 +17,11 @@ import { DOCUMENT } from '@angular/common';
 })
 export class UpdateShiftFormComponent implements OnInit {
 
-  @Input() properties: ShiftPropertyBase<any>[] = [];
-  @Input() shift:ShiftDTO
+  @Input() shift:Shift
 
   members:CrewMember[]
+  properties: ShiftPropertyBase<any>[] = [];
+
   form: FormGroup;
   JSONMembers :  DropdownShift
   validUpdate: boolean
@@ -28,15 +29,16 @@ export class UpdateShiftFormComponent implements OnInit {
   constructor(private spcs: ShiftPropertyControlService,
               private crewMemberService:CrewMemberService, 
               private shiftService:ShiftService,
-              private location: Location ) { 
-
+              private location: Location,
+              private shiftPropertyService: ShiftPropertyService ) {
   }
 
   ngOnInit() {
 
+    this.properties=this.shiftPropertyService.getProperty()
     this.form = this.spcs.toFormGroup(this.properties)
     this.validUpdate=false
-
+    
     this.crewMemberService.getMembers().subscribe(
 
       members => {
@@ -47,15 +49,16 @@ export class UpdateShiftFormComponent implements OnInit {
 
             this.JSONMembers=this.properties.filter(idx=>idx.key=="crewMember")[0] as DropdownShift
             this.JSONMembers.options.push({key:member.id,value:member.name})
-        }
 
+        }
         this.form.get('duration').setValue(this.shift.duration)
-        this.form.get('crewMember').setValue(this.shift.crewMemberId)
-        this.form.get('weekday').setValue(this.shift.weekDay)
+        this.form.get('crewMember').setValue(this.shift.crewMember.id)
+        this.form.get('weekday').setValue(this.shift.weekDay.name)
         this.form.disable()
-        
+
         
       })
+  
 
     // this.logNameChange();
   }

@@ -14,6 +14,7 @@ import { ShiftDetailsComponent } from './shift-details/shift-details.component';
 import { MembersComponent } from './members/members.component';
 import { MemberShiftsComponent } from './member-shifts/member-shifts.component';
 import { UpdateShiftFormComponent } from './update-shift-form/update-shift-form.component';
+import { ValidateShiftsComponent } from './validate-shifts/validate-shifts.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UpdateShiftFormComponent } from './update-shift-form/update-shift-form.
     ShiftDetailsComponent,
     MembersComponent,
     MemberShiftsComponent,
-    UpdateShiftFormComponent
+    UpdateShiftFormComponent,
+    ValidateShiftsComponent
   ],
   imports: [
     BrowserModule,

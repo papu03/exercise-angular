@@ -20,6 +20,7 @@ export class ShiftService {
   private shiftsDTOUrl = 'http://localhost:8080/shiftsDTO'; 
   private shiftUrl = 'http://localhost:8080/shift'; 
   private shiftsUrl = 'http://localhost:8080/shifts'; 
+  private invalidShiftsUrl = 'http://localhost:8080/invalidShifts'; 
 
   private crewMemberShiftUrl = 'http://localhost:8080/crewMemberShifts'; 
 
@@ -40,11 +41,27 @@ export class ShiftService {
     );
   }
 
+  getShift(id: number): Observable<Shift> {
+    const url = `${this.shiftsUrl}/${id}`;
+    return this.http.get<Shift>(url).pipe(
+      tap(_ => this.log(`fetched shift id=${id}`)),
+      catchError(this.handleError<Shift>(`getShift id=${id}`))
+    );
+  }
+
   getShiftDTO(id: number): Observable<ShiftDTO> {
     const url = `${this.shiftsDTOUrl}/${id}`;
     return this.http.get<ShiftDTO>(url).pipe(
       tap(_ => this.log(`fetched shift id=${id}`)),
       catchError(this.handleError<ShiftDTO>(`getShift id=${id}`))
+    );
+  }
+
+  getInvalidShifts(): Observable<any> {
+
+    return this.http.get<any>(this.invalidShiftsUrl).pipe(
+      tap(_ => this.log(`getInvalidShifts`)),
+      catchError(this.handleError<any>(`getInvalidShifts`))
     );
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit,Input} from '@angular/core';
-import { ShiftPropertyBase } from '../shift-form/shift-property-base'
+import { ShiftPropertyBase } from '../shift-form-property/shift-property-base'
 import { FormGroup }        from '@angular/forms';
 
 @Component({
