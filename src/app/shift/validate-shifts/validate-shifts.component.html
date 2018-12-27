@@ -1,0 +1,17 @@
+<h2>Invalid Shifts</h2>
+
+<ul class="shift">
+  <li *ngFor="let invalidShift of invalidShifts" class="col-1-4">
+
+    <a  routerLink='/shift/shift-detail/{{invalidShift.shift.shiftId}}' >
+      <span>Shift N° {{invalidShift.shift.shiftId}}</span>
+    </a>
+    <ul>
+      <li *ngFor="let error of invalidShift.errors">
+        <h5>{{error}}</h5>
+      </li>
+    </ul>
+    <app-update-shift-form [shift]="invalidShift.shift"></app-update-shift-form>   
+
+  </li>
+</ul>

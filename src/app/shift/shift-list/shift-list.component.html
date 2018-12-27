@@ -1,0 +1,12 @@
+<h1>Shift List</h1>
+<ul class="shift">
+  <li *ngFor="let shift of shifts" class="col-1-4">
+    <a  routerLink='/shift/shift-detail/{{shift.shiftId}}'>
+      <span class="badge">{{shift.shiftId}}</span>
+      <span>{{shift.crewMember.name}} at {{shift.weekDay.name}}</span>
+    </a>
+    <button class="delete" title="delete shift"
+      (click)="deleteShift(shift)">x</button>
+  </li>
+</ul>
+
