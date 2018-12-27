@@ -1,12 +1,10 @@
-<div>
-    <h1>{{title}}</h1>
-    <nav>
-        <a routerLink="/dashboard">Dashboard</a>
-        <a routerLink="/add-shift" >Add shift</a>
-        <a routerLink="/members" >Members</a>
-        <a routerLink="/validate-shifts" >Validate</a>
 
-    </nav>
-    <!--<app-dynamic-shift-form></app-dynamic-shift-form>-->
-    <router-outlet></router-outlet>
-</div>
+<app-header></app-header>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/shift/addshift" >Add shift</a>
+    <a routerLink="/crewMember" >Members</a>
+    <a routerLink="/shift/validate-shifts" >Validate</a>
+  
+</nav>
+<router-outlet></router-outlet>

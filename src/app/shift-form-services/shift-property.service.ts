@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { DropdownShift } from '../shift-form-property/shift-dropdown'
-import { TextboxShift } from '../shift-form-property/shift-textbox'
-import { ShiftPropertyBase } from '../shift-form-property/shift-property-base';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {CrewMember} from '../app.shift';
 import { Observable, of } from 'rxjs';
 import { CrewMemberService } from './crew-member.service';
 import { Shift } from '../app.shift';
+import { ShiftPropertyBase } from '../dynamic-form/shift-form-property/shift-property-base';
+import { DropdownShift } from '../dynamic-form/shift-form-property/shift-dropdown';
+import { TextboxShift } from '../dynamic-form/shift-form-property/shift-textbox';
 
 @Injectable({
   providedIn: 'root'

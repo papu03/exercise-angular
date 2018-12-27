@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ShiftPropertyBase } from '../shift-form-property/shift-property-base'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ShiftPropertyBase } from '../dynamic-form/shift-form-property/shift-property-base';
 
 
 @Injectable(
